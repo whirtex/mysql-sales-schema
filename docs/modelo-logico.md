@@ -1,17 +1,17 @@
 # Modelo Lógico
 
-cliente (<u>idcliente</u>, nome)
+cliente (idcliente [PK], nome)
 
-compra (<u>idcompra</u>, data, total, **idcliente**, **idvendedor**)
+compra (idcompra [PK], data, total, idcliente [FK], idvendedor [FK])
 
-vendedor (<u>idvendedor</u>, nome)
+vendedor (idvendedor [PK], nome)
 
-itemdecompra (<u>item</u>, <u>**idcompra**</u>, **idproduto**, qtd)
+itemdecompra (item [PK], idcompra [PK, FK], idproduto [FK], qtd)
 
-produto (<u>idproduto</u>, nome, preco)
+produto (idproduto [PK], nome, preco)
 
 ## Legenda
 
-- <u>sublinhado</u> = chave primária (PK)
-- **negrito** = chave estrangeira (FK)
-- <u>**ambos**</u> = chave primária e estrangeira ao mesmo tempo
+- `[PK]` = chave primária
+- `[FK]` = chave estrangeira
+- `[PK, FK]` = chave primária e estrangeira ao mesmo tempo
