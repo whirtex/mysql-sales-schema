@@ -31,4 +31,14 @@ create table compra (
   foreign key (idcliente) references cliente(idcliente),
   foreign key (idvendedor) references vendedor(idvendedor)
 );
+
+create table itemdecompra (
+	item int,
+  idcompra int,
+  idproduto int not null,
+  qtd int not null,
+  primary key (item, idcompra),
+  foreign key (idcompra) references compra(idcompra),
+  foreign key (idproduto) references produto(idproduto)
+);
   
