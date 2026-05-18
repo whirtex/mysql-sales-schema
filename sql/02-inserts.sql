@@ -10,8 +10,8 @@ insert into cliente (idcliente, nome) values
   (6,  'Camila Ferreira'),
   (7,  'Bruno Almeida'),
   (8,  'Larissa Rocha'),
-  (9,  'Gustavo Pereira'),
-	(10, 'Mariana Lopes');
+  (9,  'Gustavo Pereira'), -- Nao compra nada
+	(10, 'Mariana Lopes'); -- Nao compra nada
 
 -- populando vendedor
 insert into vendedor (idvendedor, nome) values
@@ -23,7 +23,7 @@ insert into vendedor (idvendedor, nome) values
   (6,  'Roberto Lima'),
   (7,  'Juliana Alves'),
   (8,  'Marcos Paulo'),
-  (9,  'Fernanda Dias'),
+  (9,  'Fernanda Dias'), 
   (10, 'Patrícia Gomes');
 
 -- populando produto
@@ -70,3 +70,9 @@ insert into itemdecompra (item, idcompra, idproduto, qtd) values
   (1, 10, 4, 9),
   (2, 10, 7, 3);
   
+-- consultando as tabelas para verificar os dados inseridos
+SELECT * FROM cliente;
+SELECT * FROM vendedor;
+SELECT * FROM produto;
+SELECT * FROM compra;
+SELECT * FROM itemdecompra;
