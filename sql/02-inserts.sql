@@ -51,3 +51,22 @@ insert into compra (idcompra, idcliente, idvendedor, data, total) values
   (8,  7, 2, '2024-11-10', 23.75),  -- 5 Manga
   (9,  8, 6, '2025-09-14', 55.40),  -- 7 Tangerina + 4 Abacate
   (10, 3, 3, '2024-12-05', 56.70);  -- 9 Laranja + 3 Uva
+  
+-- populando itemdecompra
+insert into itemdecompra (item, idcompra, idproduto, qtd) values
+	(1, 1, 3, 2), 
+  (1, 2, 4, 20),
+  (1, 3, 5, 15),
+  (1, 4, 6, 5),
+  (2, 4, 3, 3),
+  (1, 5, 1, 10),
+  (2, 5, 7, 2),
+  (1, 6, 9, 4),
+  (1, 7, 10, 6),
+  (2, 7, 2, 8),
+  (1, 8, 8, 5),
+  (1, 9, 5, 7),
+  (2, 9, 3, 4),
+  (1, 10, 4, 9),
+  (2, 10, 7, 3);
+  
