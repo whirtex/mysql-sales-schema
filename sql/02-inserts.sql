@@ -38,3 +38,16 @@ insert into produto (idproduto, nome, preco) values
   (8,  'Manga',     4.75),
   (9,  'Abacaxi',   7.30),
   (10, 'Morango',   11.50);
+  
+-- populando compra
+insert into compra (idcompra, idcliente, idvendedor, data, total) values
+  (1,  1, 2, '2025-06-07', 13.00),  -- 2 Abacate
+  (2,  2, 3, '2025-01-29', 60.00),  -- 20 Laranja
+  (3,  3, 2, '2025-03-15', 63.00),  -- 15 Tangerina
+  (4,  4, 3, '2025-04-20', 47.00),  -- 5 Maca + 3 Abacate
+  (5,  5, 1, '2025-05-08', 44.80),  -- 10 Banana + 2 Uva
+  (6,  1, 4, '2025-07-22', 29.20),  -- 4 Abacaxi
+  (7,  6, 5, '2025-08-30', 100.20), -- 6 Morango + 8 Melancia
+  (8,  7, 2, '2024-11-10', 23.75),  -- 5 Manga
+  (9,  8, 6, '2025-09-14', 55.40),  -- 7 Tangerina + 4 Abacate
+  (10, 3, 3, '2024-12-05', 56.70);  -- 9 Laranja + 3 Uva
