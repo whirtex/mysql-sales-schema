@@ -65,3 +65,13 @@ from cliente
     left join compra on cliente.idcliente = compra.idcliente
 where
     compra.idcompra is null;
+
+-- letra j.
+select distinct vendedor.nome
+from vendedor
+    inner join compra on vendedor.idvendedor = compra.idvendedor
+    inner join itemdecompra on compra.idcompra = itemdecompra.idcompra
+    inner join produto on itemdecompra.idproduto = produto.idproduto
+where
+    produto.nome in ('Laranja', 'Tangerina')
+    and itemdecompra.qtd > 12;
