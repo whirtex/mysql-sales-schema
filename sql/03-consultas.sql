@@ -51,4 +51,10 @@ from vendedor
 group by
     vendedor.nome;
 
--- falta letra f, h, j.
+-- letra h.
+select produto.nome, sum(itemdecompra.qtd)
+from produto
+    inner join itemdecompra on produto.idproduto = itemdecompra.idproduto
+group by
+    produto.nome
+order by sum(itemdecompra.qtd) desc;
