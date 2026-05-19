@@ -60,15 +60,17 @@ group by
 order by sum(itemdecompra.qtd) desc;
 
 -- letra f.
-select cliente.nome, compra.idcompra
+select cliente.nome
 from cliente
     left join compra on cliente.idcliente = compra.idcliente
 where
     compra.idcompra is null;
 
 -- letra j.
-select distinct vendedor.nome
-from vendedor
+select distinct
+    vendedor.nome
+from
+    vendedor
     inner join compra on vendedor.idvendedor = compra.idvendedor
     inner join itemdecompra on compra.idcompra = itemdecompra.idcompra
     inner join produto on itemdecompra.idproduto = produto.idproduto
