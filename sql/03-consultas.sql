@@ -37,3 +37,10 @@ inner join itemdecompra
 inner join produto
 	on itemdecompra.idproduto = produto.idproduto
 where produto.nome = 'Abacate';
+
+-- letra i.
+select compra.data, cliente.nome, compra.total
+from compra
+inner join cliente
+	on compra.idcliente = cliente.idcliente
+where year(compra.data) = 2025
