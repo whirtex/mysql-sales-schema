@@ -8,10 +8,21 @@ select nome, preco
   order by preco desc;
   
 -- letra a.
-select cliente.nome
+select distinct cliente.nome
 from cliente
 inner join compra
-   on compra.idcliente = cliente.idcliente
+	on compra.idcliente = cliente.idcliente
 inner join vendedor
-   on vendedor.idvendedor = compra.idvendedor
+	on vendedor.idvendedor = compra.idvendedor
 where vendedor.nome = 'José Rubem';
+
+-- letra c.
+select distinct produto.nome
+from produto
+inner join itemdecompra
+	on itemdecompra.idproduto = produto.idproduto
+inner join compra
+	on compra.idcompra = itemdecompra.idcompra
+inner join vendedor
+	on vendedor.idvendedor = compra.idvendedor
+where vendedor.nome = 'Fábio Jr.';
