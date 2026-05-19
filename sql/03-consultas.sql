@@ -26,3 +26,14 @@ inner join compra
 inner join vendedor
 	on vendedor.idvendedor = compra.idvendedor
 where vendedor.nome = 'Fábio Jr.';
+
+-- letra g.
+select distinct cliente.nome, cliente.idcliente
+from cliente
+inner join compra
+	on cliente.idcliente = compra.idcliente
+inner join itemdecompra
+	on compra.idcompra = itemdecompra.idcompra
+inner join produto
+	on itemdecompra.idproduto = produto.idproduto
+where produto.nome = 'Abacate';
