@@ -43,4 +43,13 @@ select compra.data, cliente.nome, compra.total
 from compra
 inner join cliente
 	on compra.idcliente = cliente.idcliente
-where year(compra.data) = 2025
+where year(compra.data) = 2025;
+
+-- letra e.
+select vendedor.nome, sum(compra.total)
+from vendedor
+inner join compra
+	on vendedor.idvendedor = compra.idvendedor
+group by vendedor.nome;
+
+-- falta letra f, h, j
