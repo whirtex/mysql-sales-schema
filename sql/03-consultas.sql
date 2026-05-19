@@ -58,3 +58,10 @@ from produto
 group by
     produto.nome
 order by sum(itemdecompra.qtd) desc;
+
+-- letra f.
+select cliente.nome, compra.idcompra
+from cliente
+    left join compra on cliente.idcliente = compra.idcliente
+where
+    compra.idcompra is null;
