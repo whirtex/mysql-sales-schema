@@ -1,0 +1,13 @@
+# Arquivo final de entrega (contem matricula - dado pessoal)
+entrega/grupo3-final.sql
+
+# Editores
+.vscode/
+.idea/
+
+# SO
+Thumbs.db
+.DS_Store
+
+# MySQL Workbench
+*.mwb.bak
