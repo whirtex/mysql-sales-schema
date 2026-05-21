@@ -1,0 +1,3 @@
+# Inclui os arquivos .sql nas estatisticas de linguagem do GitHub.
+# SQL e tipo "data" no Linguist e nao e contado por padrao.
+*.sql linguist-detectable=true
