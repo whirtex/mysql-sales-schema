@@ -62,11 +62,12 @@ group by
 order by total_qtd desc;
 
 -- letra i.
-select compra.data, cliente.nome, compra.total
-from compra
-    inner join cliente on compra.idcliente = cliente.idcliente
+select co.data, cl.nome, co.total
+from compra co
+    inner join cliente cl on co.idcliente = cl.idcliente
 where
-    year (compra.data) = 2025;
+    co.data >= '2025-01-01'
+    AND co.data < '2026-01-01';
 
 -- letra j.
 select distinct
