@@ -53,12 +53,13 @@ where
     pr.nome = 'Abacate';
 
 -- letra h.
-select produto.nome, sum(itemdecompra.qtd)
-from produto
-    inner join itemdecompra on produto.idproduto = itemdecompra.idproduto
+select pr.nome, sum(itco.qtd) as total_qtd
+from produto pr
+    inner join itemdecompra itco on pr.idproduto = itco.idproduto
 group by
-    produto.nome
-order by sum(itemdecompra.qtd) desc;
+    pr.idproduto,
+    pr.nome
+order by total_qtd desc;
 
 -- letra i.
 select compra.data, cliente.nome, compra.total
