@@ -1,8 +1,3 @@
-/*
-GRUPO 3
-MATRÍCULA - NOME DO INTEGRANTE DO GRUPO
-*/
-
 -- 1) IMPLEMENTACAO DO BANCO DE DADOS
 
 create database vendas;
@@ -57,8 +52,9 @@ create table itemdecompra (
 -- 2) POPULANDO AS TABELAS
 
 -- POPULANDO A TABELA cliente
-insert into cliente (idcliente, nome) values
-    (1, 'João Silva'),
+insert into
+    cliente (idcliente, nome)
+values (1, 'João Silva'),
     (2, 'Maria Souza'),
     (3, 'Pedro Santos'),
     (4, 'Ana Costa'),
@@ -70,8 +66,9 @@ insert into cliente (idcliente, nome) values
     (10, 'Mariana Lopes');
 
 -- POPULANDO A TABELA vendedor
-insert into vendedor (idvendedor, nome) values
-    (1, 'Cláudio Coelho'),
+insert into
+    vendedor (idvendedor, nome)
+values (1, 'Cláudio Coelho'),
     (2, 'José Rubem'),
     (3, 'Fábio Jr.'),
     (4, 'Carlos Mendes'),
@@ -83,8 +80,9 @@ insert into vendedor (idvendedor, nome) values
     (10, 'Patrícia Gomes');
 
 -- POPULANDO A TABELA produto
-insert into produto (idproduto, nome, preco) values
-    (1, 'Banana', 2.50),
+insert into
+    produto (idproduto, nome, preco)
+values (1, 'Banana', 2.50),
     (2, 'Melancia', 3.90),
     (3, 'Abacate', 6.50),
     (4, 'Laranja', 3.00),
@@ -96,8 +94,15 @@ insert into produto (idproduto, nome, preco) values
     (10, 'Morango', 11.50);
 
 -- POPULANDO A TABELA compra
-insert into compra (idcompra, idcliente, idvendedor, data, total) values
-    (1, 1, 2, '2025-06-07', 13.00),
+insert into
+    compra (
+        idcompra,
+        idcliente,
+        idvendedor,
+        data,
+        total
+    )
+values (1, 1, 2, '2025-06-07', 13.00),
     (2, 2, 3, '2025-01-29', 60.00),
     (3, 3, 2, '2025-03-15', 63.00),
     (4, 4, 3, '2025-04-20', 47.00),
@@ -109,8 +114,14 @@ insert into compra (idcompra, idcliente, idvendedor, data, total) values
     (10, 3, 3, '2024-12-05', 56.70);
 
 -- POPULANDO A TABELA itemdecompra
-insert into itemdecompra (item, idcompra, idproduto, qtd) values
-    (1, 1, 3, 2),
+insert into
+    itemdecompra (
+        item,
+        idcompra,
+        idproduto,
+        qtd
+    )
+values (1, 1, 3, 2),
     (1, 2, 4, 20),
     (1, 3, 5, 15),
     (1, 4, 6, 5),
@@ -129,7 +140,8 @@ insert into itemdecompra (item, idcompra, idproduto, qtd) values
 -- 3) CONSULTAS
 
 -- CONSULTA A - Nome dos clientes atendidos pelo vendedor José Rubem
-select distinct cliente.nome
+select distinct
+    cliente.nome
 from
     cliente
     inner join compra on compra.idcliente = cliente.idcliente
@@ -141,7 +153,8 @@ where
 select nome, preco from produto order by preco desc;
 
 -- CONSULTA C - Nome dos produtos vendidos pelo vendedor Fábio Jr.
-select distinct produto.nome
+select distinct
+    produto.nome
 from
     produto
     inner join itemdecompra on itemdecompra.idproduto = produto.idproduto
@@ -168,7 +181,9 @@ where
     compra.idcompra is null;
 
 -- CONSULTA G - Nome e codigo dos clientes que compraram abacate
-select distinct cliente.nome, cliente.idcliente
+select distinct
+    cliente.nome,
+    cliente.idcliente
 from
     cliente
     inner join compra on cliente.idcliente = compra.idcliente
@@ -193,7 +208,8 @@ where
     year (compra.data) = 2025;
 
 -- CONSULTA J - Vendedores que venderam laranja ou tangerina acima de uma duzia em uma unica compra
-select distinct vendedor.nome
+select distinct
+    vendedor.nome
 from
     vendedor
     inner join compra on vendedor.idvendedor = compra.idvendedor
