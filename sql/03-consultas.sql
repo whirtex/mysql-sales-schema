@@ -13,14 +13,14 @@ select nome, preco from produto order by preco desc;
 
 -- letra c.
 select distinct
-    produto.nome
+    pr.nome
 from
-    produto
-    inner join itemdecompra on itemdecompra.idproduto = produto.idproduto
-    inner join compra on compra.idcompra = itemdecompra.idcompra
-    inner join vendedor on vendedor.idvendedor = compra.idvendedor
+    produto pr
+    inner join itemdecompra itco on itco.idproduto = pr.idproduto
+    inner join compra co on co.idcompra = itco.idcompra
+    inner join vendedor ve on ve.idvendedor = co.idvendedor
 where
-    vendedor.nome = 'Fábio Jr.';
+    ve.nome = 'Fábio Jr.';
 
 -- letra d.
 select count(*) from compra;
