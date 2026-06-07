@@ -34,11 +34,11 @@ group by
     ve.idvendedor;
 
 -- letra f.
-select cliente.nome
-from cliente
-    left join compra on cliente.idcliente = compra.idcliente
+select cl.nome
+from cliente cl
+    left join compra co on cl.idcliente = co.idcliente
 where
-    compra.idcompra is null;
+    co.idcompra is null;
 
 -- letra g.
 select distinct
