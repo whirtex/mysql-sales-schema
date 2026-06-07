@@ -26,11 +26,11 @@ where
 select count(*) from compra;
 
 -- letra e.
-select vendedor.nome, sum(compra.total)
-from vendedor
-    inner join compra on vendedor.idvendedor = compra.idvendedor
+select ve.nome, sum(co.total) as total_vendido
+from vendedor ve
+    inner join compra co on ve.idvendedor = co.idvendedor
 group by
-    vendedor.nome;
+    ve.nome, ve.idvendedor;
 
 -- letra f.
 select cliente.nome
