@@ -71,15 +71,15 @@ where
 
 -- letra j.
 select distinct
-    vendedor.nome
+    ve.nome
 from
-    vendedor
-    inner join compra on vendedor.idvendedor = compra.idvendedor
-    inner join itemdecompra on compra.idcompra = itemdecompra.idcompra
-    inner join produto on itemdecompra.idproduto = produto.idproduto
+    vendedor ve
+    inner join compra co on ve.idvendedor = co.idvendedor
+    inner join itemdecompra itco on co.idcompra = itco.idcompra
+    inner join produto pr on itco.idproduto = pr.idproduto
 where
-    produto.nome in ('Laranja', 'Tangerina')
-    and itemdecompra.qtd > 12;
+    pr.nome in ('Laranja', 'Tangerina')
+    and itco.qtd > 12;
 
 -- letra k.
 select ve.nome, count(*) as qtd_vendas
