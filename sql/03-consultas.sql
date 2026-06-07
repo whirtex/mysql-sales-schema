@@ -30,7 +30,8 @@ select ve.nome, sum(co.total) as total_vendido
 from vendedor ve
     inner join compra co on ve.idvendedor = co.idvendedor
 group by
-    ve.nome, ve.idvendedor;
+    ve.nome,
+    ve.idvendedor;
 
 -- letra f.
 select cliente.nome
@@ -77,3 +78,11 @@ from
 where
     produto.nome in ('Laranja', 'Tangerina')
     and itemdecompra.qtd > 12;
+
+-- letra k.
+select ve.nome, count(*) as qtd_vendas
+from vendedor ve
+    inner join compra co on ve.idvendedor = co.idvendedor
+group by
+    ve.nome,
+    ve.idvendedor;
