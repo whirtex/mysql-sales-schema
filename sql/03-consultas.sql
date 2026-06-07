@@ -42,15 +42,15 @@ where
 
 -- letra g.
 select distinct
-    cliente.nome,
-    cliente.idcliente
+    cl.nome,
+    cl.idcliente
 from
-    cliente
-    inner join compra on cliente.idcliente = compra.idcliente
-    inner join itemdecompra on compra.idcompra = itemdecompra.idcompra
-    inner join produto on itemdecompra.idproduto = produto.idproduto
+    cliente cl
+    inner join compra co on cl.idcliente = co.idcliente
+    inner join itemdecompra itco on co.idcompra = itco.idcompra
+    inner join produto pr on itco.idproduto = pr.idproduto
 where
-    produto.nome = 'Abacate';
+    pr.nome = 'Abacate';
 
 -- letra h.
 select produto.nome, sum(itemdecompra.qtd)
