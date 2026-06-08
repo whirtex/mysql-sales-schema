@@ -88,3 +88,13 @@ from vendedor ve
 group by
     ve.nome,
     ve.idvendedor;
+
+-- letra l.
+select ve.nome, sum(co.total) as total_vendido
+from vendedor ve
+    inner join compra co on ve.idvendedor = co.idvendedor
+group by
+    ve.idvendedor,
+    ve.nome
+having
+    sum(co.total) > 60;
