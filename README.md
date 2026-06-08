@@ -13,6 +13,11 @@ domínio, foram derivados os três níveis clássicos de modelagem de dados
 com dados coerentes e respondido por meio de 10 consultas SQL que cobrem
 agregações, junções, ordenação e relacionamentos negativos.
 
+As consultas foram refatoradas seguindo boas práticas (aliases de tabela e
+coluna, `GROUP BY` pela chave primária e filtros de data sargáveis), e o
+projeto vem sendo estendido com consultas analíticas adicionais para estudo —
+`HAVING`, funções de agregação, `CASE`, subconsultas e `VIEW`.
+
 ## Estrutura do repositório
 
 ```
@@ -24,7 +29,7 @@ agregações, junções, ordenação e relacionamentos negativos.
 ├── sql/
 │   ├── 01-schema.sql             # DDL — CREATE TABLE
 │   ├── 02-inserts.sql            # DML — INSERTs
-│   └── 03-consultas.sql          # Consultas a–j separadas
+│   └── 03-consultas.sql          # Consultas a–j + extensões de estudo (com aliases)
 └── entrega/
     └── grupo3.sql                # Arquivo final consolidado
 ```
@@ -48,18 +53,31 @@ As 10 consultas estão em [`sql/03-consultas.sql`](sql/03-consultas.sql) (versã
 de desenvolvimento) e em [`entrega/grupo3.sql`](entrega/grupo3.sql) (versão
 consolidada). Cobrem:
 
-| # | Consulta | Conceitos |
-|---|---|---|
-| a | Clientes atendidos por um vendedor específico | `INNER JOIN` (3 tabelas) |
-| b | Produtos ordenados por preço (maior → menor) | `ORDER BY DESC` |
-| c | Produtos vendidos por um vendedor específico | `INNER JOIN` (4 tabelas) + `DISTINCT` |
-| d | Quantidade total de compras realizadas | `COUNT(*)` |
-| e | Valor total vendido por vendedor | `GROUP BY` + `SUM` |
-| f | Clientes que nunca compraram | `LEFT JOIN` + `IS NULL` |
-| g | Nome e código dos clientes que compraram determinado produto | `INNER JOIN` (4 tabelas) |
-| h | Produtos ordenados por quantidade vendida | `GROUP BY` + `SUM` + `ORDER BY` |
-| i | Compras realizadas em determinado ano | `INNER JOIN` + `YEAR()` |
-| j | Vendedores que venderam mais de uma dúzia em uma única compra | `INNER JOIN` (4 tabelas) + `IN` |
+| #   | Consulta                                                      | Conceitos                                      |
+| --- | ------------------------------------------------------------- | ---------------------------------------------- |
+| a   | Clientes atendidos por um vendedor específico                 | `INNER JOIN` (3 tabelas)                       |
+| b   | Produtos ordenados por preço (maior → menor)                  | `ORDER BY DESC`                                |
+| c   | Produtos vendidos por um vendedor específico                  | `INNER JOIN` (4 tabelas) + `DISTINCT`          |
+| d   | Quantidade total de compras realizadas                        | `COUNT(*)`                                     |
+| e   | Valor total vendido por vendedor                              | `GROUP BY` + `SUM`                             |
+| f   | Clientes que nunca compraram                                  | `LEFT JOIN` + `IS NULL`                        |
+| g   | Nome e código dos clientes que compraram determinado produto  | `INNER JOIN` (4 tabelas)                       |
+| h   | Produtos ordenados por quantidade vendida                     | `GROUP BY` + `SUM` + `ORDER BY`                |
+| i   | Compras realizadas em determinado ano                         | `INNER JOIN` + filtro de data (faixa sargável) |
+| j   | Vendedores que venderam mais de uma dúzia em uma única compra | `INNER JOIN` (4 tabelas) + `IN`                |
+
+### Extensões de estudo
+
+Além das 10 consultas originais, o arquivo inclui consultas adicionais criadas
+para praticar conceitos de SQL cobrados em avaliação:
+
+| #   | Consulta                                       | Conceitos                       |
+| --- | ---------------------------------------------- | ------------------------------- |
+| k   | Quantidade de vendas por vendedor              | `GROUP BY` + `COUNT`            |
+| l   | Vendedores com total vendido acima de um valor | `GROUP BY` + `HAVING`           |
+| m   | Vendedores com mais de uma venda               | `GROUP BY` + `HAVING` + `COUNT` |
+
+Em andamento: funções (`MAX`/`MIN`/`AVG`/`ROUND`), `CASE`, subconsultas e `VIEW`.
 
 ## Como executar
 
