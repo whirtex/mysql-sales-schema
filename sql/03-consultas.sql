@@ -98,3 +98,13 @@ group by
     ve.nome
 having
     sum(co.total) > 60;
+
+-- letra m.
+select ve.nome, count(co.idcompra) as vendas
+from vendedor ve
+    inner join compra co on ve.idvendedor = co.idvendedor
+group by
+    ve.nome,
+    ve.idvendedor
+having
+    count(co.idcompra) > 1;
