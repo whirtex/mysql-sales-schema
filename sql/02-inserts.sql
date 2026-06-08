@@ -41,7 +41,10 @@ values (1, 'Banana', 2.50),
     (7, 'Uva', 9.90),
     (8, 'Manga', 4.75),
     (9, 'Abacaxi', 7.30),
-    (10, 'Morango', 11.50);
+    (10, 'Morango', 11.50),
+    (11, 'Kiwi', 8.90), -- proposital: nunca vendido
+    (12, 'Cereja', 11.50);
+-- empata com Morango no maior preco
 
 -- populando compra
 insert into
@@ -61,8 +64,11 @@ values (1, 1, 2, '2025-06-07', 13.00), -- 2 Abacate
     (7, 6, 5, '2025-08-30', 100.20), -- 6 Morango + 8 Melancia
     (8, 7, 2, '2024-11-10', 23.75), -- 5 Manga
     (9, 8, 6, '2025-09-14', 55.40), -- 7 Tangerina + 4 Abacate
-    (10, 3, 3, '2024-12-05', 56.70);
--- 9 Laranja + 3 Uva
+    (10, 3, 3, '2024-12-05', 56.70), -- 9 Laranja + 3 Uva
+    (11, 7, 7, '2025-10-05', 46.00), -- 4 Cereja
+    (12, 3, 2, '2026-02-10', 60.50), -- 5 Uva + 2 Maca
+    (13, 6, 8, '2023-07-18', 45.00);
+-- 15 Laranja
 
 -- populando itemdecompra
 insert into
@@ -86,7 +92,11 @@ values (1, 1, 3, 2),
     (1, 9, 5, 7),
     (2, 9, 3, 4),
     (1, 10, 4, 9),
-    (2, 10, 7, 3);
+    (2, 10, 7, 3),
+    (1, 11, 12, 4),
+    (1, 12, 7, 5),
+    (2, 12, 6, 2),
+    (1, 13, 4, 15);
 
 -- consultando as tabelas para verificar os dados inseridos
 SELECT * FROM cliente;
