@@ -29,7 +29,7 @@ projeto vem sendo estendido com consultas analíticas adicionais para estudo —
 ├── sql/
 │   ├── 01-schema.sql             # DDL — CREATE TABLE
 │   ├── 02-inserts.sql            # DML — INSERTs
-│   └── 03-consultas.sql          # Consultas a–j + extensões de estudo (com aliases)
+│   └── 03-consultas.sql          # Consultas 1–16 (10 originais + extensões), com aliases
 └── entrega/
     └── grupo3.sql                # Arquivo final consolidado
 ```
@@ -49,35 +49,40 @@ A modelagem percorre os três níveis padrão:
 
 ## Consultas implementadas
 
-As 10 consultas estão em [`sql/03-consultas.sql`](sql/03-consultas.sql) (versão
-de desenvolvimento) e em [`entrega/grupo3.sql`](entrega/grupo3.sql) (versão
-consolidada). Cobrem:
+As consultas estão em [`sql/03-consultas.sql`](sql/03-consultas.sql), numeradas e
+com a pergunta no cabeçalho de cada uma. As 10 primeiras — também em
+[`entrega/grupo3.sql`](entrega/grupo3.sql) — correspondem ao trabalho original;
+as demais são extensões de estudo.
+
+### Consultas originais (1–10)
 
 | #   | Consulta                                                      | Conceitos                                      |
 | --- | ------------------------------------------------------------- | ---------------------------------------------- |
-| a   | Clientes atendidos por um vendedor específico                 | `INNER JOIN` (3 tabelas)                       |
-| b   | Produtos ordenados por preço (maior → menor)                  | `ORDER BY DESC`                                |
-| c   | Produtos vendidos por um vendedor específico                  | `INNER JOIN` (4 tabelas) + `DISTINCT`          |
-| d   | Quantidade total de compras realizadas                        | `COUNT(*)`                                     |
-| e   | Valor total vendido por vendedor                              | `GROUP BY` + `SUM`                             |
-| f   | Clientes que nunca compraram                                  | `LEFT JOIN` + `IS NULL`                        |
-| g   | Nome e código dos clientes que compraram determinado produto  | `INNER JOIN` (4 tabelas)                       |
-| h   | Produtos ordenados por quantidade vendida                     | `GROUP BY` + `SUM` + `ORDER BY`                |
-| i   | Compras realizadas em determinado ano                         | `INNER JOIN` + filtro de data (faixa sargável) |
-| j   | Vendedores que venderam mais de uma dúzia em uma única compra | `INNER JOIN` (4 tabelas) + `IN`                |
+| 1   | Clientes atendidos por um vendedor específico                 | `INNER JOIN` (3 tabelas)                       |
+| 2   | Produtos ordenados por preço (maior → menor)                  | `ORDER BY DESC`                                |
+| 3   | Produtos vendidos por um vendedor específico                  | `INNER JOIN` (4 tabelas) + `DISTINCT`          |
+| 4   | Quantidade total de compras realizadas                        | `COUNT(*)`                                     |
+| 5   | Valor total vendido por vendedor                              | `GROUP BY` + `SUM`                             |
+| 6   | Clientes que nunca compraram                                  | `LEFT JOIN` + `IS NULL`                        |
+| 7   | Nome e código dos clientes que compraram determinado produto  | `INNER JOIN` (4 tabelas)                       |
+| 8   | Produtos ordenados por quantidade vendida                     | `GROUP BY` + `SUM` + `ORDER BY`                |
+| 9   | Compras realizadas em determinado ano                         | `INNER JOIN` + filtro de data (faixa sargável) |
+| 10  | Vendedores que venderam mais de uma dúzia em uma única compra | `INNER JOIN` (4 tabelas) + `IN`                |
 
-### Extensões de estudo
+### Extensões de estudo (11–16)
 
-Além das 10 consultas originais, o arquivo inclui consultas adicionais criadas
-para praticar conceitos de SQL cobrados em avaliação:
+Consultas adicionais para praticar conceitos de SQL cobrados em avaliação:
 
 | #   | Consulta                                       | Conceitos                       |
 | --- | ---------------------------------------------- | ------------------------------- |
-| k   | Quantidade de vendas por vendedor              | `GROUP BY` + `COUNT`            |
-| l   | Vendedores com total vendido acima de um valor | `GROUP BY` + `HAVING`           |
-| m   | Vendedores com mais de uma venda               | `GROUP BY` + `HAVING` + `COUNT` |
+| 11  | Quantidade de vendas por vendedor              | `GROUP BY` + `COUNT`            |
+| 12  | Vendedores com total vendido acima de um valor | `GROUP BY` + `HAVING`           |
+| 13  | Vendedores com mais de uma venda               | `GROUP BY` + `HAVING` + `COUNT` |
+| 14  | Maior, menor e preço médio dos produtos        | `MAX` / `MIN` / `AVG` / `ROUND` |
+| 15  | Ticket médio das compras por vendedor          | `AVG` + `GROUP BY`              |
+| 16  | Classificação de produtos (Caro/Médio/Barato)  | `CASE`                          |
 
-Em andamento: funções (`MAX`/`MIN`/`AVG`/`ROUND`), `CASE`, subconsultas e `VIEW`.
+Em andamento: subconsultas e `VIEW`.
 
 ## Como executar
 
