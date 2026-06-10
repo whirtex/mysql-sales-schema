@@ -123,3 +123,13 @@ from vendedor ve
 group by
     ve.idvendedor,
     ve.nome;
+
+-- letra p.
+select
+    nome,
+    case
+        when preco <= 5 then 'Barato'
+        when preco >= 9 then 'Caro'
+        else 'Medio'
+    end as classificacao_preco
+from produto;
