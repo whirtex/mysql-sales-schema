@@ -108,3 +108,10 @@ group by
     ve.idvendedor
 having
     count(co.idcompra) > 1;
+
+-- letra n.
+select
+    max(preco) as maior_preco,
+    min(preco) as menor_preco,
+    round(avg(preco), 2) as preco_medio
+from produto;
