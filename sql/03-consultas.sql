@@ -1,4 +1,4 @@
--- letra a.
+-- 1. Quais clientes foram atendidos pelo vendedor 'José Rubem'?
 select distinct
     cl.nome
 from
@@ -8,10 +8,10 @@ from
 where
     ve.nome = 'José Rubem';
 
--- letra b.
+-- 2. Quais os produtos ordenados por preço, do maior para o menor?
 select nome, preco from produto order by preco desc;
 
--- letra c.
+-- 3. Quais produtos foram vendidos pelo vendedor 'Fábio Jr.'?
 select distinct
     pr.nome
 from
@@ -22,10 +22,10 @@ from
 where
     ve.nome = 'Fábio Jr.';
 
--- letra d.
+-- 4. Quantas compras foram realizadas no total?
 select count(*) from compra;
 
--- letra e.
+-- 5. Qual o valor total vendido por cada vendedor?
 select ve.nome, sum(co.total) as total_vendido
 from vendedor ve
     inner join compra co on ve.idvendedor = co.idvendedor
@@ -33,14 +33,14 @@ group by
     ve.nome,
     ve.idvendedor;
 
--- letra f.
+-- 6. Quais clientes nunca compraram?
 select cl.nome
 from cliente cl
     left join compra co on cl.idcliente = co.idcliente
 where
     co.idcompra is null;
 
--- letra g.
+-- 7. Quais clientes (nome e código) compraram 'Abacate'?
 select distinct
     cl.nome,
     cl.idcliente
@@ -52,7 +52,7 @@ from
 where
     pr.nome = 'Abacate';
 
--- letra h.
+-- 8. Quais produtos ordenados pela quantidade total vendida?
 select pr.nome, sum(itco.qtd) as total_qtd
 from produto pr
     inner join itemdecompra itco on pr.idproduto = itco.idproduto
@@ -61,7 +61,7 @@ group by
     pr.nome
 order by total_qtd desc;
 
--- letra i.
+-- 9. Quais compras foram realizadas em 2025?
 select co.data, cl.nome, co.total
 from compra co
     inner join cliente cl on co.idcliente = cl.idcliente
@@ -69,7 +69,7 @@ where
     co.data >= '2025-01-01'
     AND co.data < '2026-01-01';
 
--- letra j.
+-- 10. Quais vendedores venderam mais de uma dúzia de 'Laranja' ou 'Tangerina' em uma única compra?
 select distinct
     ve.nome
 from
@@ -81,7 +81,7 @@ where
     pr.nome in ('Laranja', 'Tangerina')
     and itco.qtd > 12;
 
--- letra k.
+-- 11. Quantas vendas cada vendedor realizou?
 select ve.nome, count(*) as qtd_vendas
 from vendedor ve
     inner join compra co on ve.idvendedor = co.idvendedor
@@ -89,7 +89,7 @@ group by
     ve.nome,
     ve.idvendedor;
 
--- letra l.
+-- 12. Quais vendedores venderam mais de R$ 60 no total?
 select ve.nome, sum(co.total) as total_vendido
 from vendedor ve
     inner join compra co on ve.idvendedor = co.idvendedor
@@ -99,7 +99,7 @@ group by
 having
     sum(co.total) > 60;
 
--- letra m.
+-- 13. Quais vendedores realizaram mais de uma venda?
 select ve.nome, count(co.idcompra) as vendas
 from vendedor ve
     inner join compra co on ve.idvendedor = co.idvendedor
@@ -109,14 +109,14 @@ group by
 having
     count(co.idcompra) > 1;
 
--- letra n.
+-- 14. Qual o maior, o menor e o preço médio dos produtos?
 select
     max(preco) as maior_preco,
     min(preco) as menor_preco,
     round(avg(preco), 2) as preco_medio
 from produto;
 
--- letra o.
+-- 15. Qual o ticket médio das compras de cada vendedor?
 select ve.nome, round(avg(co.total), 2) as preco_medio
 from vendedor ve
     inner join compra co on ve.idvendedor = co.idvendedor
@@ -124,7 +124,7 @@ group by
     ve.idvendedor,
     ve.nome;
 
--- letra p.
+-- 16. Como classificar cada produto em 'Caro', 'Médio' ou 'Barato' pelo preço?
 select
     nome,
     case
