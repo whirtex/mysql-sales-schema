@@ -133,3 +133,12 @@ select
         else 'Medio'
     end as classificacao_preco
 from produto;
+
+-- 17. Qual o nome do(s) produto(s) com o maior preço?
+select nome, preco
+from produto
+where
+    preco = (
+        select max(preco)
+        from produto
+    );
