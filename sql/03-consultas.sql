@@ -115,3 +115,11 @@ select
     min(preco) as menor_preco,
     round(avg(preco), 2) as preco_medio
 from produto;
+
+-- letra o.
+select ve.nome, round(avg(co.total), 2) as preco_medio
+from vendedor ve
+    inner join compra co on ve.idvendedor = co.idvendedor
+group by
+    ve.idvendedor,
+    ve.nome;
