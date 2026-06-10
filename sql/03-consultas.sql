@@ -142,3 +142,12 @@ where
         select max(preco)
         from produto
     );
+
+-- 18. Quais produtos nunca foram vendidos?
+select idproduto, nome
+from produto
+where
+    idproduto not in (
+        select idproduto
+        from itemdecompra
+    );
