@@ -151,3 +151,21 @@ where
         select idproduto
         from itemdecompra
     );
+
+-- 19. Quais clientes gastaram acima da média de gasto dos clientes?
+select cl.nome, sum(co.total) as gasto
+from cliente cl
+    inner join compra co on co.idcliente = cl.idcliente
+group by
+    cl.idcliente,
+    cl.nome
+having
+    sum(co.total) > (
+        select avg(total_cliente)
+        from (
+                select sum(total) as total_cliente
+                from compra
+                group by
+                    idcliente
+            ) as totais
+    );
