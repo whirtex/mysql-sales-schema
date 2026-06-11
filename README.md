@@ -1,22 +1,23 @@
 # Sistema de Vendas — Banco de Dados Relacional
 
-Modelagem e implementação de um banco de dados relacional para um sistema
-de vendas em MySQL, partindo de um modelo conceitual até a entrega de
-consultas analíticas.
+Banco de dados relacional para um sistema de vendas em MySQL, usado como
+**material de estudo e prática de SQL** — da modelagem (conceitual, lógico,
+físico) a um conjunto de 21 consultas que cobrem desde junções e agregações
+até `HAVING`, `CASE`, subconsultas, `VIEW` e transações.
 
 ## Sobre o projeto
 
 O sistema simula um estabelecimento que registra **compras**, **clientes**,
 **vendedores**, **produtos** e os **itens de cada compra**. A partir desse
 domínio, foram derivados os três níveis clássicos de modelagem de dados
-(conceitual, lógico, físico), o schema foi implementado no MySQL, povoado
-com dados coerentes e respondido por meio de 10 consultas SQL que cobrem
-agregações, junções, ordenação e relacionamentos negativos.
+(conceitual, lógico, físico), o schema foi implementado no MySQL e povoado com
+dados coerentes.
 
-As consultas foram refatoradas seguindo boas práticas (aliases de tabela e
-coluna, `GROUP BY` pela chave primária e filtros de data sargáveis), e o
-projeto vem sendo estendido com consultas analíticas adicionais para estudo —
-`HAVING`, funções de agregação, `CASE`, subconsultas e `VIEW`.
+O projeto nasceu como trabalho acadêmico (modelagem + 10 consultas) e evoluiu
+para um material de **estudo de SQL**: as consultas foram refatoradas seguindo
+boas práticas (aliases de tabela e coluna, `GROUP BY` pela chave primária,
+filtros de data sargáveis) e ampliadas para **21 consultas**, percorrendo os
+principais tópicos cobrados em avaliação.
 
 ## Estrutura do repositório
 
@@ -29,9 +30,9 @@ projeto vem sendo estendido com consultas analíticas adicionais para estudo —
 ├── sql/
 │   ├── 01-schema.sql             # DDL — CREATE TABLE
 │   ├── 02-inserts.sql            # DML — INSERTs
-│   └── 03-consultas.sql          # Consultas 1–16 (10 originais + extensões), com aliases
+│   └── 03-consultas.sql          # 21 consultas (DQL/DML), com aliases e pergunta no cabeçalho
 └── entrega/
-    └── grupo3.sql                # Arquivo final consolidado
+    └── grupo3.sql                # Versão original entregue (10 consultas)
 ```
 
 ## Modelagem
@@ -47,14 +48,11 @@ A modelagem percorre os três níveis padrão:
   Implementação concreta com tipos do SGBD, `NOT NULL`, `DECIMAL(10,2)` para
   valores monetários e integridade referencial via `FOREIGN KEY`.
 
-## Consultas implementadas
+## Consultas
 
-As consultas estão em [`sql/03-consultas.sql`](sql/03-consultas.sql), numeradas e
-com a pergunta no cabeçalho de cada uma. As 10 primeiras — também em
-[`entrega/grupo3.sql`](entrega/grupo3.sql) — correspondem ao trabalho original;
-as demais são extensões de estudo.
-
-### Consultas originais (1–10)
+As 21 consultas estão em [`sql/03-consultas.sql`](sql/03-consultas.sql),
+numeradas e com a pergunta no cabeçalho de cada uma. As 10 primeiras também
+constam, na forma original, em [`entrega/grupo3.sql`](entrega/grupo3.sql).
 
 | #   | Consulta                                                      | Conceitos                                      |
 | --- | ------------------------------------------------------------- | ---------------------------------------------- |
@@ -68,21 +66,17 @@ as demais são extensões de estudo.
 | 8   | Produtos ordenados por quantidade vendida                     | `GROUP BY` + `SUM` + `ORDER BY`                |
 | 9   | Compras realizadas em determinado ano                         | `INNER JOIN` + filtro de data (faixa sargável) |
 | 10  | Vendedores que venderam mais de uma dúzia em uma única compra | `INNER JOIN` (4 tabelas) + `IN`                |
-
-### Extensões de estudo (11–16)
-
-Consultas adicionais para praticar conceitos de SQL cobrados em avaliação:
-
-| #   | Consulta                                       | Conceitos                       |
-| --- | ---------------------------------------------- | ------------------------------- |
-| 11  | Quantidade de vendas por vendedor              | `GROUP BY` + `COUNT`            |
-| 12  | Vendedores com total vendido acima de um valor | `GROUP BY` + `HAVING`           |
-| 13  | Vendedores com mais de uma venda               | `GROUP BY` + `HAVING` + `COUNT` |
-| 14  | Maior, menor e preço médio dos produtos        | `MAX` / `MIN` / `AVG` / `ROUND` |
-| 15  | Ticket médio das compras por vendedor          | `AVG` + `GROUP BY`              |
-| 16  | Classificação de produtos (Caro/Médio/Barato)  | `CASE`                          |
-
-Em andamento: subconsultas e `VIEW`.
+| 11  | Quantidade de vendas por vendedor                             | `GROUP BY` + `COUNT`                           |
+| 12  | Vendedores com total vendido acima de um valor                | `GROUP BY` + `HAVING`                          |
+| 13  | Vendedores com mais de uma venda                              | `GROUP BY` + `HAVING` + `COUNT`                |
+| 14  | Maior, menor e preço médio dos produtos                       | `MAX` / `MIN` / `AVG` / `ROUND`                |
+| 15  | Ticket médio das compras por vendedor                         | `AVG` + `GROUP BY`                             |
+| 16  | Classificação de produtos (Caro/Médio/Barato)                 | `CASE`                                         |
+| 17  | Produto(s) com o maior preço                                  | Subconsulta escalar (`= MAX`)                  |
+| 18  | Produtos que nunca foram vendidos                             | Subconsulta `NOT IN`                           |
+| 19  | Clientes que gastaram acima da média dos clientes             | Subconsulta no `FROM` (derivada) + `HAVING`    |
+| 20  | Visão com os detalhes de cada item vendido                    | `CREATE VIEW`                                  |
+| 21  | Reajuste de preço e remoção de uma compra                     | `UPDATE` / `DELETE` + transação                |
 
 ## Como executar
 
@@ -94,19 +88,8 @@ SOURCE sql/02-inserts.sql;
 SOURCE sql/03-consultas.sql;
 ```
 
-Ou, para reproduzir a entrega em um único passo:
-
-```sql
-SOURCE entrega/grupo3.sql;
-```
-
 ## Stack
 
 - **SGBD:** MySQL 8
 - **Modelagem:** MySQL Workbench (engenharia reversa para o modelo físico)
 - **Versionamento:** Git
-
-## Contexto
-
-Projeto desenvolvido para a disciplina de Engenharia de Dados
-(Prof. Anderson Nascimento).
