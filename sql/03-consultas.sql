@@ -1,3 +1,5 @@
+use vendas;
+
 -- 1. Quais clientes foram atendidos pelo vendedor 'José Rubem'?
 select distinct
     cl.nome
@@ -169,3 +171,27 @@ having
                     idcliente
             ) as totais
     );
+
+-- 20. Crie uma visão (vw_vendas) com os detalhes de cada item vendido.
+create view vw_vendas as
+select
+    co.idcompra,
+    co.data,
+    cl.nome as cliente,
+    ve.nome as vendedor,
+    pr.nome as produto,
+    itco.qtd as quantidade,
+    pr.preco as preco_unitario,
+    (itco.qtd * pr.preco) as subtotal
+from
+    compra co
+    inner join cliente cl on co.idcliente = cl.idcliente
+    inner join vendedor ve on co.idvendedor = ve.idvendedor
+    inner join itemdecompra itco on itco.idcompra = co.idcompra
+    inner join produto pr on pr.idproduto = itco.idproduto;
+
+select * from vw_vendas;
+-- todos os itens vendidos
+select * from vw_vendas where cliente = 'Pedro Santos';
+
+select produto, sum(quantidade) as qtd from vw_vendas group by produto;
