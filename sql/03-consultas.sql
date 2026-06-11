@@ -194,4 +194,22 @@ select * from vw_vendas;
 -- todos os itens vendidos
 select * from vw_vendas where cliente = 'Pedro Santos';
 
-select produto, sum(quantidade) as qtd from vw_vendas group by produto;
+select produto, sum(quantidade) as qtd
+from vw_vendas
+group by
+    produto;
+
+-- 21. Reajuste o preço de um produto e remova uma compra.
+start transaction;
+
+update produto set preco = preco * 1.50 where idproduto = 2;
+
+delete from itemdecompra where idcompra = 13;
+
+delete from compra where idcompra = 13;
+
+select * from produto;
+
+select * from compra;
+
+rollback;
